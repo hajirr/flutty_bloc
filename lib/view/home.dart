@@ -5,6 +5,7 @@ import 'package:flutty_bloc/bloc/data_bloc.dart';
 import 'package:flutty_bloc/bloc/data_event.dart';
 import 'package:flutty_bloc/bloc/data_state.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -23,17 +24,16 @@ class _HomeState extends State<Home> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-          body: Container(
+          body: SizedBox(
               width: width,
               height: height,
-              decoration: const BoxDecoration(color: Colors.black),
               child: Column(
                 children: [
                   TabBar(
                       indicatorColor: Colors.black,
                       labelStyle:
                           GoogleFonts.ubuntu(fontWeight: FontWeight.w600),
-                      labelColor: Colors.grey,
+                      labelColor: Colors.black,
                       tabs: const [
                         Tab(
                           text: "Trending",
@@ -54,8 +54,9 @@ class _HomeState extends State<Home> {
                           child: BlocBuilder<DataBloc, DataState>(
                             builder: (context, state) {
                               if (state is LoadingDataState) {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
+                                return Center(
+                                  child:
+                                      Lottie.asset("assets/json/loading.json"),
                                 );
                               } else if (state is FailedToLoadDataState) {
                                 return Center(
@@ -76,7 +77,8 @@ class _HomeState extends State<Home> {
                                                   .articleTopHeadline[index]
                                                   .urlToImage,
                                               placeholder: (context, url) =>
-                                                  const CircularProgressIndicator(),
+                                                  Lottie.asset(
+                                                      "assets/json/loading.json"),
                                               errorWidget:
                                                   (context, url, error) =>
                                                       const Icon(Icons.error),
@@ -126,7 +128,8 @@ class _HomeState extends State<Home> {
                                                   .articleInvestment[index]
                                                   .urlToImage,
                                               placeholder: (context, url) =>
-                                                  const CircularProgressIndicator(),
+                                                  Lottie.asset(
+                                                      "assets/json/loading.json"),
                                               errorWidget:
                                                   (context, url, error) =>
                                                       const Icon(Icons.error),
@@ -176,7 +179,8 @@ class _HomeState extends State<Home> {
                                                   .articleTechnology[index]
                                                   .urlToImage,
                                               placeholder: (context, url) =>
-                                                  const CircularProgressIndicator(),
+                                                  Lottie.asset(
+                                                      "assets/json/loading.json"),
                                               errorWidget:
                                                   (context, url, error) =>
                                                       const Icon(Icons.error),
