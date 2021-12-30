@@ -24,6 +24,14 @@ class _HomeState extends State<Home> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
+          appBar: AppBar(
+            title: Text(
+              "FluttyNews",
+              style: GoogleFonts.poppins(),
+            ),
+            centerTitle: true,
+            elevation: 0,
+          ),
           body: SizedBox(
               width: width,
               height: height,
@@ -46,7 +54,7 @@ class _HomeState extends State<Home> {
                         ),
                       ]),
                   SizedBox(
-                    height: height * 0.92,
+                    height: height * 0.8,
                     child: TabBarView(
                       children: [
                         RefreshIndicator(

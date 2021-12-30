@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: '',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.blueGrey,
         ),
         home: BlocProvider<DataBloc>(
           create: (context) => DataBloc()..add(LoadDataEvent()),
