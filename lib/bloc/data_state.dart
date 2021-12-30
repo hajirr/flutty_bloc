@@ -2,6 +2,8 @@ import 'package:flutty_bloc/model/news.dart';
 
 abstract class DataState {}
 
+class InitialDataState extends DataState {}
+
 class LoadingDataState extends DataState {}
 
 class LoadedDataState extends DataState {
