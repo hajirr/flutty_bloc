@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutty_bloc/bloc/data_bloc.dart';
@@ -68,12 +69,27 @@ class _HomeState extends State<Home> {
                                     itemCount: state.articleTopHeadline.length,
                                     itemBuilder: (context, index) {
                                       return Card(
-                                        child: ListTile(
-                                          title: Text(state
-                                              .articleTopHeadline[index].title),
-                                          subtitle: Text(state
-                                              .articleTopHeadline[index]
-                                              .content),
+                                        child: Column(
+                                          children: [
+                                            CachedNetworkImage(
+                                              imageUrl: state
+                                                  .articleTopHeadline[index]
+                                                  .urlToImage,
+                                              placeholder: (context, url) =>
+                                                  const CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                            ),
+                                            ListTile(
+                                              title: Text(state
+                                                  .articleTopHeadline[index]
+                                                  .title),
+                                              subtitle: Text(state
+                                                  .articleTopHeadline[index]
+                                                  .content),
+                                            ),
+                                          ],
                                         ),
                                       );
                                     });
@@ -103,12 +119,27 @@ class _HomeState extends State<Home> {
                                     itemCount: state.articleInvestment.length,
                                     itemBuilder: (context, index) {
                                       return Card(
-                                        child: ListTile(
-                                          title: Text(state
-                                              .articleInvestment[index].title),
-                                          subtitle: Text(state
-                                              .articleInvestment[index]
-                                              .content),
+                                        child: Column(
+                                          children: [
+                                            CachedNetworkImage(
+                                              imageUrl: state
+                                                  .articleInvestment[index]
+                                                  .urlToImage,
+                                              placeholder: (context, url) =>
+                                                  const CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                            ),
+                                            ListTile(
+                                              title: Text(state
+                                                  .articleInvestment[index]
+                                                  .title),
+                                              subtitle: Text(state
+                                                  .articleInvestment[index]
+                                                  .content),
+                                            ),
+                                          ],
                                         ),
                                       );
                                     });
@@ -138,12 +169,27 @@ class _HomeState extends State<Home> {
                                     itemCount: state.articleTechnology.length,
                                     itemBuilder: (context, index) {
                                       return Card(
-                                        child: ListTile(
-                                          title: Text(state
-                                              .articleTechnology[index].title),
-                                          subtitle: Text(state
-                                              .articleTechnology[index]
-                                              .content),
+                                        child: Column(
+                                          children: [
+                                            CachedNetworkImage(
+                                              imageUrl: state
+                                                  .articleTechnology[index]
+                                                  .urlToImage,
+                                              placeholder: (context, url) =>
+                                                  const CircularProgressIndicator(),
+                                              errorWidget:
+                                                  (context, url, error) =>
+                                                      const Icon(Icons.error),
+                                            ),
+                                            ListTile(
+                                              title: Text(state
+                                                  .articleTechnology[index]
+                                                  .title),
+                                              subtitle: Text(state
+                                                  .articleTechnology[index]
+                                                  .content),
+                                            ),
+                                          ],
                                         ),
                                       );
                                     });
