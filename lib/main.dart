@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutty_bloc/bloc/DataCubit.dart';
+import 'package:flutty_bloc/bloc/data_bloc.dart';
+import 'package:flutty_bloc/bloc/data_event.dart';
 import 'package:flutty_bloc/view/home.dart';
 
 void main() {
@@ -18,8 +19,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: BlocProvider<DataCubit>(
-          create: (context) => DataCubit()..getNewsArticle(),
+        home: BlocProvider<DataBloc>(
+          create: (context) => DataBloc()..add(LoadDataEvent()),
           child: const Home(),
         ));
   }
