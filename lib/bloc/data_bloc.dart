@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutty_bloc/bloc/data_event.dart';
 import 'package:flutty_bloc/bloc/data_state.dart';
-import 'package:flutty_bloc/data/network-api.dart';
+import 'package:flutty_bloc/data/network_api.dart';
 import 'package:flutty_bloc/model/news.dart';
 
 //Jika menggunakan Bloc
