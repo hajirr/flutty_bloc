@@ -19,44 +19,145 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return SafeArea(
+    return DefaultTabController(
+      length: 3,
       child: Scaffold(
-          body: RefreshIndicator(
-        onRefresh: refresh,
-        child: Container(
-            width: width,
-            height: height,
-            decoration: const BoxDecoration(color: Colors.black),
-            child: BlocBuilder<DataBloc, DataState>(
-              builder: (context, state) {
-                if (state is LoadingDataState) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state is FailedToLoadDataState) {
-                  return Center(
-                    child: Text(
-                      "Terjadi kesalahan ${state.error}",
-                      style: GoogleFonts.poppins(),
-                    ),
-                  );
-                } else if (state is LoadedDataState) {
-                  return ListView.builder(
-                      itemCount: state.article.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: ListTile(
-                            title: Text(state.article[index].title),
-                            subtitle: Text(state.article[index].content),
+          body: Container(
+              width: width,
+              height: height,
+              decoration: const BoxDecoration(color: Colors.black),
+              child: Column(
+                children: [
+                  TabBar(
+                      indicatorColor: Colors.black,
+                      labelStyle:
+                          GoogleFonts.ubuntu(fontWeight: FontWeight.w600),
+                      labelColor: Colors.grey,
+                      tabs: const [
+                        Tab(
+                          text: "Trending",
+                        ),
+                        Tab(
+                          text: "Investasi",
+                        ),
+                        Tab(
+                          text: "Teknologi",
+                        ),
+                      ]),
+                  SizedBox(
+                    height: height * 0.92,
+                    child: TabBarView(
+                      children: [
+                        RefreshIndicator(
+                          onRefresh: refresh,
+                          child: BlocBuilder<DataBloc, DataState>(
+                            builder: (context, state) {
+                              if (state is LoadingDataState) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (state is FailedToLoadDataState) {
+                                return Center(
+                                  child: Text(
+                                    "Terjadi kesalahan ${state.error}",
+                                    style: GoogleFonts.poppins(),
+                                  ),
+                                );
+                              } else if (state is LoadedDataState) {
+                                return ListView.builder(
+                                    itemCount: state.articleTopHeadline.length,
+                                    itemBuilder: (context, index) {
+                                      return Card(
+                                        child: ListTile(
+                                          title: Text(state
+                                              .articleTopHeadline[index].title),
+                                          subtitle: Text(state
+                                              .articleTopHeadline[index]
+                                              .content),
+                                        ),
+                                      );
+                                    });
+                              } else {
+                                return const SizedBox();
+                              }
+                            },
                           ),
-                        );
-                      });
-                } else {
-                  return const SizedBox();
-                }
-              },
-            )),
-      )),
+                        ),
+                        RefreshIndicator(
+                          onRefresh: refresh,
+                          child: BlocBuilder<DataBloc, DataState>(
+                            builder: (context, state) {
+                              if (state is LoadingDataState) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (state is FailedToLoadDataState) {
+                                return Center(
+                                  child: Text(
+                                    "Terjadi kesalahan ${state.error}",
+                                    style: GoogleFonts.poppins(),
+                                  ),
+                                );
+                              } else if (state is LoadedDataState) {
+                                return ListView.builder(
+                                    itemCount: state.articleInvestment.length,
+                                    itemBuilder: (context, index) {
+                                      return Card(
+                                        child: ListTile(
+                                          title: Text(state
+                                              .articleInvestment[index].title),
+                                          subtitle: Text(state
+                                              .articleInvestment[index]
+                                              .content),
+                                        ),
+                                      );
+                                    });
+                              } else {
+                                return const SizedBox();
+                              }
+                            },
+                          ),
+                        ),
+                        RefreshIndicator(
+                          onRefresh: refresh,
+                          child: BlocBuilder<DataBloc, DataState>(
+                            builder: (context, state) {
+                              if (state is LoadingDataState) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (state is FailedToLoadDataState) {
+                                return Center(
+                                  child: Text(
+                                    "Terjadi kesalahan ${state.error}",
+                                    style: GoogleFonts.poppins(),
+                                  ),
+                                );
+                              } else if (state is LoadedDataState) {
+                                return ListView.builder(
+                                    itemCount: state.articleTechnology.length,
+                                    itemBuilder: (context, index) {
+                                      return Card(
+                                        child: ListTile(
+                                          title: Text(state
+                                              .articleTechnology[index].title),
+                                          subtitle: Text(state
+                                              .articleTechnology[index]
+                                              .content),
+                                        ),
+                                      );
+                                    });
+                              } else {
+                                return const SizedBox();
+                              }
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ))),
     );
   }
 }

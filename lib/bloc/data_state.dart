@@ -1,4 +1,5 @@
-import 'package:flutty_bloc/model/news.dart';
+import 'package:flutty_bloc/model/news_everything.dart';
+import 'package:flutty_bloc/model/news_top_headlines.dart';
 
 abstract class DataState {}
 
@@ -7,8 +8,13 @@ class InitialDataState extends DataState {}
 class LoadingDataState extends DataState {}
 
 class LoadedDataState extends DataState {
-  List<Article> article;
-  LoadedDataState({required this.article});
+  List<ArticleTopHeadlines> articleTopHeadline;
+  List<ArticleEverything> articleInvestment;
+  List<ArticleEverything> articleTechnology;
+  LoadedDataState(
+      {required this.articleTopHeadline,
+      required this.articleInvestment,
+      required this.articleTechnology});
 }
 
 class FailedToLoadDataState extends DataState {
