@@ -2,8 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutty_bloc/bloc/data_event.dart';
 import 'package:flutty_bloc/bloc/data_state.dart';
 import 'package:flutty_bloc/data/network_api.dart';
-import 'package:flutty_bloc/model/news_top_headlines.dart';
-import 'package:flutty_bloc/model/news_everything.dart';
+import 'package:flutty_bloc/model/news_article.dart';
 
 //Jika menggunakan Bloc
 class DataBloc extends Bloc<DataEvent, DataState> {
@@ -11,9 +10,9 @@ class DataBloc extends Bloc<DataEvent, DataState> {
   DataBloc() : super(InitialDataState()) {
     on<LoadDataEvent>((event, emit) async {
       emit(LoadingDataState());
-      List<ArticleTopHeadlines> articleTopHeadline = [];
-      List<ArticleEverything> articleInvestment = [];
-      List<ArticleEverything> articleTechnology = [];
+      List<Article> articleTopHeadline = [];
+      List<Article> articleInvestment = [];
+      List<Article> articleTechnology = [];
       try {
         articleTopHeadline = await dataServices.getNewsTopHeadline();
         articleInvestment = await dataServices.getNewsInvestment();

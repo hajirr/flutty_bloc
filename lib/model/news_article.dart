@@ -1,13 +1,11 @@
 import 'dart:convert';
 
-NewsEverythingModel newsEverythingModelFromJson(String str) =>
-    NewsEverythingModel.fromJson(json.decode(str));
+NewsModel newsModelFromJson(String str) => NewsModel.fromJson(json.decode(str));
 
-String newsEverythingModelToJson(NewsEverythingModel data) =>
-    json.encode(data.toJson());
+String newsModelToJson(NewsModel data) => json.encode(data.toJson());
 
-class NewsEverythingModel {
-  NewsEverythingModel({
+class NewsModel {
+  NewsModel({
     required this.status,
     required this.totalResults,
     required this.articles,
@@ -15,14 +13,13 @@ class NewsEverythingModel {
 
   String status;
   int totalResults;
-  List<ArticleEverything> articles;
+  List<Article> articles;
 
-  factory NewsEverythingModel.fromJson(Map<String, dynamic> json) =>
-      NewsEverythingModel(
+  factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
         status: json["status"],
         totalResults: json["totalResults"],
-        articles: List<ArticleEverything>.from(
-            json["articles"].map((x) => ArticleEverything.fromJson(x))),
+        articles: List<Article>.from(
+            json["articles"].map((x) => Article.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -32,8 +29,8 @@ class NewsEverythingModel {
       };
 }
 
-class ArticleEverything {
-  ArticleEverything({
+class Article {
+  Article({
     required this.source,
     required this.author,
     required this.title,
@@ -53,16 +50,15 @@ class ArticleEverything {
   DateTime publishedAt;
   String content;
 
-  factory ArticleEverything.fromJson(Map<String, dynamic> json) =>
-      ArticleEverything(
+  factory Article.fromJson(Map<String, dynamic> json) => Article(
         source: Source.fromJson(json["source"]),
-        author: json["author"] ?? "",
+        author: json["author"] ?? "-",
         title: json["title"],
         description: json["description"],
         url: json["url"],
         urlToImage: json["urlToImage"],
         publishedAt: DateTime.parse(json["publishedAt"]),
-        content: json["content"],
+        content: json["content"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -83,7 +79,7 @@ class Source {
     required this.name,
   });
 
-  String id;
+  dynamic id;
   String name;
 
   factory Source.fromJson(Map<String, dynamic> json) => Source(
